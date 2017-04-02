@@ -1,0 +1,5 @@
+---
+# defaults file for vpn-router
+
+enable_reboot: true
+ovpn_dev: tun0

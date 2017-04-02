@@ -1,0 +1,13 @@
+---
+# tasks file for vpn-router
+
+- name: Set openvpn cert
+  copy:
+    content: "{{ ovpn_cert }}"
+    dest: "/etc/openvpn/openvpn.conf"
+    owner: root
+    group: root
+    mode: 0600
+  notify:
+    - restart openvpn
+

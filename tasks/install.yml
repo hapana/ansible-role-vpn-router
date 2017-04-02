@@ -1,0 +1,10 @@
+---
+# tasks file for vpn-router
+
+
+- name: install stuff
+  apt: name={{ item }} state=present
+  with_items:
+    - openvpn
+    - curl
+

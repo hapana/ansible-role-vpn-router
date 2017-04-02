@@ -1,0 +1,4 @@
+---
+# handlers file for vpn-router
+    - name: restart openvpn
+      service: name=openvpn state=restarted

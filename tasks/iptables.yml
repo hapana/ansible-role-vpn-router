@@ -1,0 +1,25 @@
+---
+# tasks file for vpn-router
+- name: Set IP Forwarding
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: 1
+    sysctl_set: yes
+    state: present
+    reload: yes
+
+- name: Allow postoruting
+  shell: iptables -t nat -D POSTROUTING 1 && iptables -t nat -A POSTROUTING -o {{ ovpn_dev }} -j MASQUERADE
+  args:
+    executable: /bin/bash
+
+- name: Save iptables
+  shell: iptables-save > /etc/iptables.up.rules
+  args:
+    executable: /bin/bash
+
+- name: Set iptables restore
+  copy:
+    content: "#!/bin/bash\n/sbin/iptables-restore < /etc/iptables.up.rules"
+    dest: /etc/network/if-pre-up.d/iptables
+    mode: 0755

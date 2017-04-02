@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: Harry P
+  description: Add VPN Gateway
+  company: hapana
+
+  min_ansible_version: 1.2
+
+  platforms:
+  - name: Debian
+    versions:
+    - jessie
+
+  galaxy_tags: []
